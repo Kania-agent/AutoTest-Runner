@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoTest Runner — AI Test Generation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="logo">🧪 AutoTest Runner</div>
+        <div class="topbar-right">
+            <span class="ai-badge">MiMo V2.5 Engine</span>
+            <span class="run-status" id="runStatus">● Ready</span>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <section class="summary-row">
+            <div class="summary-card total">
+                <div class="summary-icon">📋</div>
+                <div class="summary-data">
+                    <div class="summary-value" id="totalTests">24</div>
+                    <div class="summary-label">Total Tests</div>
+                </div>
+            </div>
+            <div class="summary-card passed">
+                <div class="summary-icon">✅</div>
+                <div class="summary-data">
+                    <div class="summary-value" id="passedTests">20</div>
+                    <div class="summary-label">Passed</div>
+                </div>
+            </div>
+            <div class="summary-card failed">
+                <div class="summary-icon">❌</div>
+                <div class="summary-data">
+                    <div class="summary-value" id="failedTests">3</div>
+                    <div class="summary-label">Failed</div>
+                </div>
+            </div>
+            <div class="summary-card skipped">
+                <div class="summary-icon">⏭️</div>
+                <div class="summary-data">
+                    <div class="summary-value" id="skippedTests">1</div>
+                    <div class="summary-label">Skipped</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="main-grid">
+            <section class="panel test-panel">
+                <div class="panel-header">
+                    <h2>Test Cases</h2>
+                    <div class="panel-actions">
+                        <button class="btn-sm btn-generate" id="generateBtn">🤖 Generate Tests</button>
+                        <button class="btn-sm btn-run" id="runAllBtn">▶ Run All</button>
+                    </div>
+                </div>
+                <div class="test-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="passed">Passed</button>
+                    <button class="filter-btn" data-filter="failed">Failed</button>
+                    <button class="filter-btn" data-filter="skipped">Skipped</button>
+                </div>
+                <table class="test-table">
+                    <thead>
+                        <tr>
+                            <th style="width:40px">Status</th>
+                            <th>Test Name</th>
+                            <th>Module</th>
+                            <th style="width:80px">Duration</th>
+                            <th style="width:90px">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="testTableBody"></tbody>
+                </table>
+            </section>
+
+            <aside class="side-panels">
+                <div class="panel coverage-panel">
+                    <div class="panel-header">
+                        <h2>Code Coverage</h2>
+                        <span class="coverage-pct" id="coveragePct">83%</span>
+                    </div>
+                    <div class="pie-chart">
+                        <div class="pie-visual" id="pieChart"></div>
+                        <div class="pie-legend">
+                            <div class="legend-item"><span class="legend-dot" style="background:#22c55e"></span> Covered (83%)</div>
+                            <div class="legend-item"><span class="legend-dot" style="background:#ef4444"></span> Uncovered (12%)</div>
+                            <div class="legend-item"><span class="legend-dot" style="background:#f59e0b"></span> Partial (5%)</div>
+                        </div>
+                    </div>
+                    <div class="coverage-bars">
+                        <div class="cov-bar-item">
+                            <span>Statements</span>
+                            <div class="cov-bar-bg"><div class="cov-bar-fill" style="width:87%;background:#22c55e"></div></div>
+                            <span>87%</span>
+                        </div>
+                        <div class="cov-bar-item">
+                            <span>Branches</span>
+                            <div class="cov-bar-bg"><div class="cov-bar-fill" style="width:72%;background:#f59e0b"></div></div>
+                            <span>72%</span>
+                        </div>
+                        <div class="cov-bar-item">
+                            <span>Functions</span>
+                            <div class="cov-bar-bg"><div class="cov-bar-fill" style="width:91%;background:#22c55e"></div></div>
+                            <span>91%</span>
+                        </div>
+                        <div class="cov-bar-item">
+                            <span>Lines</span>
+                            <div class="cov-bar-bg"><div class="cov-bar-fill" style="width:85%;background:#22c55e"></div></div>
+                            <span>85%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel history-panel">
+                    <div class="panel-header">
+                        <h2>Run History</h2>
+                    </div>
+                    <div class="history-list">
+                        <div class="history-item">
+                            <span class="hist-dot pass"></span>
+                            <span class="hist-info">Run #42 — 20/24 passed</span>
+                            <span class="hist-time">2m ago</span>
+                        </div>
+                        <div class="history-item">
+                            <span class="hist-dot pass"></span>
+                            <span class="hist-info">Run #41 — 22/24 passed</span>
+                            <span class="hist-time">1h ago</span>
+                        </div>
+                        <div class="history-item">
+                            <span class="hist-dot fail"></span>
+                            <span class="hist-info">Run #40 — 18/24 passed</span>
+                            <span class="hist-time">3h ago</span>
+                        </div>
+                        <div class="history-item">
+                            <span class="hist-dot pass"></span>
+                            <span class="hist-info">Run #39 — 24/24 passed</span>
+                            <span class="hist-time">5h ago</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
